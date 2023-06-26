@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:horta593app/blocs/auth/auth_bloc.dart';
+import 'package:horta593app/widgets/custom_button.dart';
 import 'package:horta593app/screens/login/login_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,42 +12,27 @@ class HomeScreen extends StatelessWidget {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            title: const Text("JWT Auth Example"),
-            actions: [
-              (state is AuthAuthenticatedState)
-                  ? IconButton(
-                      onPressed: () {
-                        context.read<AuthBloc>().add(AuthLogoutEvent());
-                      },
-                      splashRadius: 23,
-                      icon: const Icon(
-                        Icons.logout,
-                      ),
-                    )
-                  : IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LoginScreen()),
-                        );
-                      },
-                      splashRadius: 23,
-                      icon: const Icon(
-                        Icons.login,
-                      ),
-                    ),
-            ],
-          ),
-          body: Center(
-            child: Text(
-              (state is AuthAuthenticatedState)
-                  ? state.user.fullName()
-                  : 'Not Authenticated',
+            body: ListView(
+          children: [
+            SizedBox(height: 150),
+            Center(
+              child: const Image(
+                image: AssetImage('lib/constants/images/logo_dark.png'),
+              ),
             ),
-          ),
-        );
+            SizedBox(height: 80),
+            Builder(builder: (context) {
+              return Container(
+                padding: const EdgeInsets.only(left: 60, right: 60),
+                child: CustomButton(
+                    text: "Empezar!",
+                    onTap: () {
+                      Navigator.pushNamed(context, LoginScreen.routeName);
+                    }),
+              );
+            })
+          ],
+        ));
       },
     );
   }

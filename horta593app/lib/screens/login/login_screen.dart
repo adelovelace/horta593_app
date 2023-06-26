@@ -11,6 +11,7 @@ import 'package:horta593app/widgets/success_dialog.dart';
 import 'bloc/login_bloc.dart';
 
 class LoginScreen extends StatelessWidget {
+  static const String routeName = 'login-screen/';
   LoginScreen({Key? key}) : super(key: key);
 
   final _formKey = GlobalKey<FormBuilderState>();
@@ -59,18 +60,6 @@ class LoginScreen extends StatelessWidget {
               return WillPopScope(
                 onWillPop: () => popScreen(state),
                 child: Scaffold(
-                  appBar: AppBar(
-                    title: const Text("Login"),
-                    leading: IconButton(
-                      onPressed: () async {
-                        if (await popScreen(state)) {
-                          Navigator.pop(context);
-                        }
-                      },
-                      icon: const Icon(Icons.arrow_back),
-                      splashRadius: 23,
-                    ),
-                  ),
                   body: Builder(
                     builder: (_) {
                       return Center(
@@ -109,13 +98,19 @@ class LoginScreen extends StatelessWidget {
                                               ),
                                               const SizedBox(
                                                 height: 20,
-                                              )
+                                              ),
                                             ],
                                           );
                                         }
                                       }
                                       return Container();
                                     }),
+                                    Image(
+                                        image: AssetImage(
+                                            'lib/constants/images/logo_dark.png')),
+                                    SizedBox(
+                                      height: 30,
+                                    ),
                                     FormBuilderTextField(
                                       name: 'email',
                                       decoration: const InputDecoration(

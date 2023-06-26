@@ -1,47 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:horta593app/widgets/custom_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:horta593app/screens/home_screen.dart';
 import 'package:horta593app/constants/global_variables.dart';
-import 'package:horta593app/screens/login/login_screen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:horta593app/screens/splash_screen.dart';
 import 'package:horta593app/router.dart';
 
+import 'blocs/auth/auth_bloc.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const App());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
+    return BlocProvider(
+      create: (context) => AuthBloc(),
+      child: MaterialApp(
         title: 'Horta593',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
             scaffoldBackgroundColor: GlobalVariables.primarybackground,
             colorScheme: const ColorScheme.light(
                 primary: GlobalVariables.secondaryColor)),
         onGenerateRoute: (settings) => generateRoute(settings),
-        home: Scaffold(
-            body: ListView(
-          children: [
-            SizedBox(height: 150),
-            Center(
-              child: const Image(
-                image: AssetImage('lib/constants/images/logo_dark.png'),
-              ),
-            ),
-            SizedBox(height: 80),
-            Builder(builder: (context) {
-              return Container(
-                padding: const EdgeInsets.only(left: 60, right: 60),
-                child: CustomButton(
-                    text: "Empezar!",
-                    onTap: () {
-                      Navigator.pushNamed(context, LoginScreen.routeName);
-                    }),
-              );
-            })
-          ],
-        )));
+        home: BlocBuilder<AuthBloc, AuthState>(
+          builder: (context, state) {
+            if (state is AuthLoadingState) {
+              return const HomeScreen();
+            } else {
+              return const HomeScreen();
+            }
+          },
+        ),
+        localizationsDelegates: const [
+          FormBuilderLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en', ''),
+          // Locale('pt', ''),
+          // Locale('es', ''),
+          // Locale('fa', ''),
+          // Locale('fr', ''),
+          // Locale('ja', ''),
+          // Locale('sk', ''),
+          // Locale('pl', ''),
+        ],
+      ),
+    );
   }
 }

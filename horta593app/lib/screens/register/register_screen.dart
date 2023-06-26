@@ -4,7 +4,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:horta593app/blocs/auth/auth_bloc.dart';
 import 'package:horta593app/exceptions/form_exceptions.dart';
-import 'package:horta593app/widgets/cellphone_field.dart';
 import 'package:horta593app/widgets/form_error_widget.dart';
 import 'package:horta593app/widgets/success_dialog.dart';
 
@@ -24,9 +23,6 @@ class RegisterScreen extends StatelessWidget {
             RegisterRequestEvent(
               email: data!['email'],
               password: data['password'],
-              cellphone: data['cellphone'],
-              firstName: data['first_name'],
-              lastName: data['last_name'],
             ),
           );
     }
@@ -64,18 +60,6 @@ class RegisterScreen extends StatelessWidget {
               return WillPopScope(
                 onWillPop: () => popScreen(state),
                 child: Scaffold(
-                  appBar: AppBar(
-                    title: const Text("Sign Up"),
-                    leading: IconButton(
-                      onPressed: () async {
-                        if (await popScreen(state)) {
-                          Navigator.pop(context);
-                        }
-                      },
-                      icon: const Icon(Icons.arrow_back),
-                      splashRadius: 23,
-                    ),
-                  ),
                   body: Builder(
                     builder: (_) {
                       return Center(
@@ -121,43 +105,6 @@ class RegisterScreen extends StatelessWidget {
                                       }
                                       return Container();
                                     }),
-                                    FormBuilderTextField(
-                                      name: 'first_name',
-                                      decoration: const InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        labelText: 'First Name',
-                                      ),
-                                      textInputAction: TextInputAction.next,
-                                      validator: FormBuilderValidators.compose([
-                                        FormBuilderValidators.required(context),
-                                        FormBuilderValidators.match(
-                                          context,
-                                          r"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$",
-                                        ),
-                                      ]),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    FormBuilderTextField(
-                                      name: 'last_name',
-                                      decoration: const InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        labelText: 'Last Name',
-                                      ),
-                                      textInputAction: TextInputAction.next,
-                                      validator: FormBuilderValidators.compose([
-                                        FormBuilderValidators.required(context),
-                                        FormBuilderValidators.match(
-                                          context,
-                                          r"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$",
-                                        ),
-                                      ]),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    CellphoneField(),
                                     const SizedBox(
                                       height: 10,
                                     ),
