@@ -23,6 +23,8 @@ class RegisterScreen extends StatelessWidget {
             RegisterRequestEvent(
               email: data!['email'],
               password: data['password'],
+              firstName: data['first_name'],
+              lastName: data['last_name'],
             ),
           );
     }
@@ -105,6 +107,39 @@ class RegisterScreen extends StatelessWidget {
                                       }
                                       return Container();
                                     }),
+                                    FormBuilderTextField(
+                                      name: 'first_name',
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        labelText: 'First Name',
+                                      ),
+                                      textInputAction: TextInputAction.next,
+                                      validator: FormBuilderValidators.compose([
+                                        FormBuilderValidators.required(context),
+                                        FormBuilderValidators.match(
+                                          context,
+                                          r"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$",
+                                        ),
+                                      ]),
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    FormBuilderTextField(
+                                      name: 'last_name',
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        labelText: 'Last Name',
+                                      ),
+                                      textInputAction: TextInputAction.next,
+                                      validator: FormBuilderValidators.compose([
+                                        FormBuilderValidators.required(context),
+                                        FormBuilderValidators.match(
+                                          context,
+                                          r"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$",
+                                        ),
+                                      ]),
+                                    ),
                                     const SizedBox(
                                       height: 10,
                                     ),

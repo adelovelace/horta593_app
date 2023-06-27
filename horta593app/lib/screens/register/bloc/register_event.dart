@@ -7,10 +7,14 @@ abstract class RegisterEvent extends Equatable {
 class RegisterRequestEvent extends RegisterEvent {
   final String email;
   final String password;
+  final String firstName;
+  final String lastName;
 
   const RegisterRequestEvent({
     required this.email,
     required this.password,
+    required this.firstName,
+    required this.lastName,
   });
 
   @override

@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:horta593app/exceptions/form_exceptions.dart';
 import 'package:horta593app/model/user_model.dart';
 import 'package:horta593app/services/auth_service.dart';
@@ -16,6 +15,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         final user = await AuthService.register(
           email: event.email,
           password: event.password,
+          firstName: event.firstName,
+          lastName: event.lastName,
         );
         emit(RegisterSuccessState(
           user,

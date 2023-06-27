@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -34,35 +33,11 @@ class AuthService {
     );
   }
 
-  static Future<void> refreshToken(User user) async {
-    final response = await http.post(
-      HelperService.buildUri(refreshPath),
-      headers: HelperService.buildHeaders(),
-      body: jsonEncode(
-        {
-          'refresh': user.refreshToken,
-        },
-      ),
-    );
-
-    final statusType = (response.statusCode / 100).floor() * 100;
-    switch (statusType) {
-      case 200:
-        final json = jsonDecode(response.body);
-        user.accessToken = json['access'];
-        saveUser(user);
-        break;
-      case 400:
-      case 300:
-      case 500:
-      default:
-        throw Exception('Error contacting the server!');
-    }
-  }
-
   static Future<User> register({
     required String email,
     required String password,
+    required String firstName,
+    required String lastName,
   }) async {
     final response = await http.post(
       HelperService.buildUri(loginPath),
@@ -71,6 +46,8 @@ class AuthService {
         {
           'email': email,
           'password': password,
+          'first_name': firstName,
+          'last_name': lastName
         },
       ),
     );
