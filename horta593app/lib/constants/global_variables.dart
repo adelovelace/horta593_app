@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class GlobalVariables {
   static const appBarGradient = LinearGradient(colors: [
-    Color.fromARGB(255, 29, 201, 192),
-    Color.fromARGB(255, 125, 221, 216)
+    Color.fromARGB(255, 46, 123, 34),
+    Color.fromARGB(255, 115, 204, 107)
   ], stops: [
     0.5,
     1.0
@@ -12,8 +12,9 @@ class GlobalVariables {
 
   static const Color secondaryColor = Color(0xff73CC6B);
   static const Color primarybackground = Color(0xff1e1e1e);
+  static const Color greyHorta = Color(0xffb0a9a5);
+
   static const Color whitebackgound = Color(0xffeae8ee);
-  static const Color greyGaluchi = Color(0xffB0AEAF);
-  static const selectedNavBarColor = Colors.cyan;
+  static const Color greenHorta = Color(0xff358F32);
   static const unselectedNavBarColor = Colors.black87;
 }

@@ -21,24 +21,26 @@ class CustomTexField extends StatelessWidget {
       children: [
         SizedBox(height: 10),
         TextFormField(
+
           obscureText: hidden,
-          style: TextStyle(color: GlobalVariables.greyGaluchi),
+          style: const TextStyle(color: GlobalVariables.whitebackgound),
           controller: controller,
           decoration: InputDecoration(
-              labelStyle: TextStyle(color: GlobalVariables.greyGaluchi),
+              labelStyle: const TextStyle(color: GlobalVariables.secondaryColor),
               labelText: header,
               contentPadding: new EdgeInsets.all(10),
-              hintStyle: TextStyle(color: GlobalVariables.greyGaluchi),
+              hintStyle: const TextStyle(color: GlobalVariables.greyHorta),
               hintText: hintText,
               border: const OutlineInputBorder(
                   borderSide: BorderSide(
-                color: GlobalVariables.greyGaluchi,
+                color: GlobalVariables.secondaryColor,
               )),
               enabledBorder: const OutlineInputBorder(
                   borderSide: BorderSide(
-                color: GlobalVariables.greyGaluchi,
+                color: GlobalVariables.secondaryColor,
               ))),
           validator: (val) {},
+
         ),
         SizedBox(height: 20)
       ],

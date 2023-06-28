@@ -17,13 +17,15 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 150),
             Center(
               child: const Image(
-                image: AssetImage('lib/constants/images/logo_dark.png'),
+                  width: 400,
+                  height: 400,
+                  image: AssetImage('lib/constants/images/logo_dark.png'),
               ),
             ),
-            SizedBox(height: 80),
+            SizedBox(height: 200),
             Builder(builder: (context) {
               return Container(
-                padding: const EdgeInsets.only(left: 60, right: 60),
+                padding: const EdgeInsets.only(left: 160, right: 160),
                 child: CustomButton(
                     text: "Empezar!",
                     onTap: () {

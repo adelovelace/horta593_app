@@ -4,11 +4,13 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:horta593app/blocs/auth/auth_bloc.dart';
 import 'package:horta593app/exceptions/form_exceptions.dart';
+import 'package:horta593app/screens/home/menu_screen.dart';
 import 'package:horta593app/widgets/form_error_widget.dart';
 import 'package:horta593app/widgets/success_dialog.dart';
 
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
+import '../../constants/global_variables.dart';
 import 'bloc/register_bloc.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -107,106 +109,195 @@ class RegisterScreen extends StatelessWidget {
                                       }
                                       return Container();
                                     }),
-                                    FormBuilderTextField(
-                                      name: 'first_name',
-                                      decoration: const InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        labelText: 'First Name',
+                                    const Image(
+                                        width: 400,
+                                        height: 400,
+                                        image: AssetImage(
+                                            'lib/constants/images/logo_dark.png')),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    const Center(
+                                      child: Text(
+                                        "Register",
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            color: GlobalVariables.greyHorta,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                      textInputAction: TextInputAction.next,
-                                      validator: FormBuilderValidators.compose([
-                                        FormBuilderValidators.required(context),
-                                        FormBuilderValidators.match(
-                                          context,
-                                          r"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$",
-                                        ),
-                                      ]),
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.only(
+                                          left: 30, right: 30),
+                                      child: FormBuilderTextField(
+                                        style: const TextStyle(
+                                            color:
+                                                GlobalVariables.whitebackgound),
+                                        name: 'first_name',
+                                        decoration: const InputDecoration(
+                                            labelStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: GlobalVariables
+                                                    .whitebackgound),
+                                            labelText: "First Name",
+                                            contentPadding: EdgeInsets.all(10),
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                              color: GlobalVariables.greenHorta,
+                                            )),
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                              color: GlobalVariables.greenHorta,
+                                            ))),
+                                        textInputAction: TextInputAction.done,
+                                        validator:
+                                            FormBuilderValidators.compose([
+                                          FormBuilderValidators.required(
+                                              context),
+                                          FormBuilderValidators.match(
+                                            context,
+                                            r"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$",
+                                          ),
+                                        ]),
+                                      ),
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    FormBuilderTextField(
-                                      name: 'last_name',
-                                      decoration: const InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        labelText: 'Last Name',
+                                    Container(
+                                      padding: const EdgeInsets.only(
+                                          left: 30, right: 30),
+                                      child: FormBuilderTextField(
+                                        style: const TextStyle(
+                                            color:
+                                                GlobalVariables.whitebackgound),
+                                        name: 'last_name',
+                                        decoration: const InputDecoration(
+                                            labelStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: GlobalVariables
+                                                    .whitebackgound),
+                                            labelText: "Last Name",
+                                            contentPadding: EdgeInsets.all(10),
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                              color: GlobalVariables.greenHorta,
+                                            )),
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                              color: GlobalVariables.greenHorta,
+                                            ))),
+                                        textInputAction: TextInputAction.done,
+                                        validator:
+                                            FormBuilderValidators.compose([
+                                          FormBuilderValidators.required(
+                                              context),
+                                          FormBuilderValidators.match(
+                                            context,
+                                            r"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$",
+                                          ),
+                                        ]),
                                       ),
-                                      textInputAction: TextInputAction.next,
-                                      validator: FormBuilderValidators.compose([
-                                        FormBuilderValidators.required(context),
-                                        FormBuilderValidators.match(
-                                          context,
-                                          r"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$",
-                                        ),
-                                      ]),
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    FormBuilderTextField(
-                                      name: 'email',
-                                      decoration: const InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        labelText: 'Email',
+                                    Container(
+                                      padding: const EdgeInsets.only(
+                                          left: 30, right: 30),
+                                      child: FormBuilderTextField(
+                                        style: const TextStyle(
+                                            color:
+                                                GlobalVariables.whitebackgound),
+                                        name: 'email',
+                                        decoration: const InputDecoration(
+                                            labelStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: GlobalVariables
+                                                    .whitebackgound),
+                                            labelText: "Email",
+                                            contentPadding: EdgeInsets.all(10),
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                              color: GlobalVariables.greenHorta,
+                                            )),
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                              color: GlobalVariables.greenHorta,
+                                            ))),
+                                        textInputAction: TextInputAction.done,
+                                        validator:
+                                            FormBuilderValidators.compose([
+                                          FormBuilderValidators.required(
+                                              context),
+                                          FormBuilderValidators.email(context),
+                                        ]),
                                       ),
-                                      textInputAction: TextInputAction.next,
-                                      validator: FormBuilderValidators.compose([
-                                        FormBuilderValidators.required(context),
-                                        FormBuilderValidators.email(context),
-                                      ]),
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    FormBuilderTextField(
-                                      name: 'password',
-                                      decoration: const InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        labelText: 'Password',
+                                    Container(
+                                      padding: const EdgeInsets.only(
+                                          left: 30, right: 30),
+                                      child: FormBuilderTextField(
+                                        style: const TextStyle(
+                                            color:
+                                                GlobalVariables.whitebackgound),
+                                        name: 'password',
+                                        decoration: const InputDecoration(
+                                            labelStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: GlobalVariables
+                                                    .whitebackgound),
+                                            labelText: "Password",
+                                            contentPadding: EdgeInsets.all(10),
+                                            hintStyle: TextStyle(
+                                                color:
+                                                    GlobalVariables.greyHorta),
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                              color: GlobalVariables.greenHorta,
+                                            )),
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                              color: GlobalVariables.greenHorta,
+                                            ))),
+                                        obscureText: true,
+                                        textInputAction: TextInputAction.done,
+                                        onSubmitted: (_) {
+                                          if (state is! AuthLoadingState) {
+                                            submitForm(context);
+                                          }
+                                        },
                                       ),
-                                      obscureText: true,
-                                      textInputAction: TextInputAction.done,
-                                      onSubmitted: (_) {
-                                        if (state is! AuthLoadingState) {
-                                          submitForm(context);
-                                        }
-                                      },
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    MaterialButton(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                      onPressed: () {
-                                        if (state is! RegisterLoadingState) {
-                                          submitForm(context);
-                                        }
-                                      },
-                                      child: (state is RegisterLoadingState)
-                                          ? const Center(
-                                              child: SizedBox(
-                                                height: 15,
-                                                width: 15,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  color: Colors.white,
-                                                  strokeWidth: 2,
-                                                ),
-                                              ),
-                                            )
-                                          : const SizedBox(
-                                              width: double.infinity,
-                                              child: Text(
-                                                'Register',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                ),
-                                              ),
+                                    OutlinedButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  MenuScreen(),
                                             ),
-                                    ),
+                                          );
+                                        },
+                                        child: const SizedBox(
+                                          width: 380,
+                                          child: Text(
+                                            'Login',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        )),
                                   ],
                                 );
                               }),

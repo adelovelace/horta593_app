@@ -8,6 +8,7 @@ import 'package:horta593app/screens/register/register_screen.dart';
 import 'package:horta593app/widgets/form_error_widget.dart';
 import 'package:horta593app/widgets/success_dialog.dart';
 
+import '../../constants/global_variables.dart';
 import 'bloc/login_bloc.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -105,94 +106,136 @@ class LoginScreen extends StatelessWidget {
                                       }
                                       return Container();
                                     }),
-                                    Image(
+                                    const Image(
+                                        width: 400,
+                                        height: 400,
                                         image: AssetImage(
                                             'lib/constants/images/logo_dark.png')),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 30,
                                     ),
-                                    FormBuilderTextField(
-                                      name: 'email',
-                                      decoration: const InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        labelText: 'Email',
+                                    Container(
+                                      padding: const EdgeInsets.only(
+                                          left: 30, right: 30),
+                                      child: FormBuilderTextField(
+                                        style: const TextStyle(
+                                            color:
+                                                GlobalVariables.whitebackgound),
+                                        name: 'email',
+                                        decoration: const InputDecoration(
+                                            labelStyle: TextStyle(
+                                                color: GlobalVariables
+                                                    .whitebackgound,
+                                              fontSize: 14
+                                            ),
+                                            labelText: "Email",
+                                            contentPadding: EdgeInsets.all(10),
+                                            hintStyle: TextStyle(
+                                                color:
+                                                    GlobalVariables.greyHorta),
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                              color: GlobalVariables.greenHorta,
+                                            )),
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                              color: GlobalVariables.greenHorta,
+                                            ))),
+                                        validator: FormBuilderValidators.compose([
+                                          FormBuilderValidators.required(context),
+                                          FormBuilderValidators.email(context),
+                                        ]),
                                       ),
-                                      textInputAction: TextInputAction.next,
-                                      validator: FormBuilderValidators.compose([
-                                        FormBuilderValidators.required(context),
-                                        FormBuilderValidators.email(context),
-                                      ]),
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    FormBuilderTextField(
-                                      name: 'password',
-                                      decoration: const InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        labelText: 'Password',
+                                    Container(
+                                      padding: const EdgeInsets.only(
+                                          left: 30, right: 30),
+                                      child: FormBuilderTextField(
+                                        style: const TextStyle(
+                                            color:
+                                                GlobalVariables.whitebackgound),
+                                        name: 'password',
+                                        decoration: const InputDecoration(
+                                            labelStyle: TextStyle(
+                                                fontSize: 14,
+                                                color: GlobalVariables
+                                                    .whitebackgound),
+                                            labelText: "Password",
+                                            contentPadding: EdgeInsets.all(10),
+                                            hintStyle: TextStyle(
+                                                color:
+                                                    GlobalVariables.greyHorta),
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                              color: GlobalVariables.greenHorta,
+                                            )),
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                              color: GlobalVariables.greenHorta,
+                                            ))),
+                                        obscureText: true,
+                                        textInputAction: TextInputAction.done,
+                                        onSubmitted: (_) {
+                                          if (state is! AuthLoadingState) {
+                                            submitForm(context);
+                                          }
+                                        },
                                       ),
-                                      obscureText: true,
-                                      textInputAction: TextInputAction.done,
-                                      onSubmitted: (_) {
-                                        if (state is! AuthLoadingState) {
-                                          submitForm(context);
-                                        }
-                                      },
                                     ),
                                     const SizedBox(
-                                      height: 10,
+                                      height: 60,
                                     ),
                                     MaterialButton(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                      onPressed: () {
-                                        if (state is! LoginLoadingState) {
-                                          submitForm(context);
-                                        }
-                                      },
-                                      child: (state is LoginLoadingState)
-                                          ? const Center(
-                                              child: SizedBox(
-                                                height: 15,
-                                                width: 15,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  color: Colors.white,
-                                                  strokeWidth: 2,
+                                        color: GlobalVariables.secondaryColor,
+                                        onPressed: () {
+                                          if (state is! LoginLoadingState) {
+                                            submitForm(context);
+                                          }
+                                        },
+                                        child: (state is LoginLoadingState)
+                                            ? const SizedBox(
+                                                width: 380,
+                                                child: Center(
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    color: Colors.white,
+                                                    strokeWidth: 3,
+                                                  ),
+                                                ))
+                                            : const SizedBox(
+                                                width: 380,
+                                                child: Text(
+                                                  'Login',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                  ),
+
                                                 ),
-                                              ),
-                                            )
-                                          : const SizedBox(
-                                              width: double.infinity,
-                                              child: Text(
-                                                'Login',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                    ),
+                                              )),
                                     OutlinedButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                RegisterScreen(),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  RegisterScreen(),
+                                            ),
+                                          );
+                                        },
+                                        child: const SizedBox(
+                                          width: 380,
+                                          child: Text(
+                                            'Sign Up',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
                                           ),
-                                        );
-                                      },
-                                      child: const SizedBox(
-                                        width: double.infinity,
-                                        child: Text(
-                                          'Sign Up',
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    ),
+                                        )),
                                   ],
                                 );
                               }),
