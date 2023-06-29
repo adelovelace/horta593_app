@@ -280,13 +280,15 @@ class RegisterScreen extends StatelessWidget {
                                     ),
                                     OutlinedButton(
                                         onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  MenuScreen(),
-                                            ),
-                                          );
+                                          if (state is! RegisterLoadingState) {
+                                            submitForm(context);
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      MenuScreen(),
+                                                ));
+                                          }
                                         },
                                         child: const SizedBox(
                                           width: 380,
