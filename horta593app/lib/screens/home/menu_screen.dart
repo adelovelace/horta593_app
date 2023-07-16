@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:horta593app/model/product_model.dart';
-import 'bloc/home_bloc.dart';
-import 'menu_generator.dart';
+import 'package:horta593app/screens/home/bloc/product_bloc.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({Key? key}) : super(key: key);
@@ -58,21 +58,33 @@ class _MenuScreenState extends State<MenuScreen> {
     );
   }
 
-  Future<bool> popScreen(state) async {
-    return state is! HomeLoadingState;
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Center(
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return _buildProductCard(itemsMenu[index]);
-        },
-        itemCount: itemsMenu.length,
-      ),
-    ));
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("Menu"),
+          centerTitle: true,
+        ),
+        body: Center(child:
+            BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
+          if (state is ProductInitial) {
+            return const CircularProgressIndicator(
+              color: Colors.amberAccent,
+            );
+          }
+          if (state is ProductLoaded) {
+            return Center(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return _buildProductCard(Product.getMenu()[index]);
+                },
+                itemCount: Product.getMenu().length,
+              ),
+            );
+          } else {
+            return const Text("Ups! Somethin went wrong!");
+          }
+        })));
   }
 }

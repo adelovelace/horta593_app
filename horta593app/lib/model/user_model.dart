@@ -2,10 +2,8 @@
 
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:horta593app/exceptions/user_exceptions.dart';
-import 'package:horta593app/services/auth_service.dart';
 
 class User {
   final int id;

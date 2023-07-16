@@ -1,8 +1,8 @@
 class HelperService {
-  static const String host = "10.0.3.2";
-  static const int port = 8000;
+  static const String host = "127.0.0.1";
+  static const int port = 3000;
   static const String scheme = "http";
-  static const String apiPath = "/api/";
+  static const String apiPath = "/";
 
   static Uri buildUri(String path) {
     return Uri(
