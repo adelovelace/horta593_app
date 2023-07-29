@@ -4,8 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:horta593app/blocs/auth/auth_bloc.dart';
 import 'package:horta593app/exceptions/form_exceptions.dart';
-import 'package:horta593app/screens/home/bloc/product_bloc.dart';
-import 'package:horta593app/screens/home/menu_screen.dart';
+import 'package:horta593app/screens/home/base_screen.dart';
 import 'package:horta593app/widgets/form_error_widget.dart';
 import 'package:horta593app/widgets/success_dialog.dart';
 
@@ -284,30 +283,10 @@ class RegisterScreen extends StatelessWidget {
                                           if (state is! RegisterLoadingState) {
                                             submitForm(context);
                                             Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return Builder(
-                                                    builder:
-                                                        (BuildContext context) {
-                                                      return MultiBlocProvider(
-                                                        providers: [
-                                                          BlocProvider(
-                                                            create: (context) =>
-                                                                ProductBloc()
-                                                                  ..add(
-                                                                      LoadProduct()),
-                                                          ),
-                                                        ],
-                                                        child:
-                                                            const MenuScreen(),
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                              ),
-                                            );
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const BaseScreen()));
                                           }
                                         },
                                         child: const SizedBox(
@@ -338,3 +317,27 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 }
+
+// context,
+                                              // MaterialPageRoute(
+                                              //   builder:
+                                              //       (BuildContext context) {
+                                              //     return Builder(
+                                              //       builder:
+                                              //           (BuildContext context) {
+                                              //         return MultiBlocProvider(
+                                              //           providers: [
+                                              //             BlocProvider(
+                                              //               create: (context) =>
+                                              //                   ProductBloc()
+                                              //                     ..add(
+                                              //                         LoadProduct()),
+                                              //             ),
+                                              //           ],
+                                              //           child:
+                                              //               const MenuScreen(),
+                                              //         );
+                                              //       },
+                                              //     );
+                                              //   },
+                                              // ),
