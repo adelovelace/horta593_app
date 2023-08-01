@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:horta593app/constants/utils/app_layout.dart';
 import 'package:horta593app/screens/category/category_screen.dart';
 
 import '../../constants/global_variables.dart';
@@ -39,7 +40,6 @@ class _MenuScreenState extends State<MenuScreen> {
             height: 150,
             child: GestureDetector(
               onTap: () {
-                // print("Card!");
                 _showBottomSheet(context);
               },
               child: Card(
@@ -128,6 +128,26 @@ class _MenuScreenState extends State<MenuScreen> {
                     ],
                   ),
                 ),
+                Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: SizedBox(
+                        height: 200,
+                        width: AppLayout.getSize(context).width,
+                        child: PageView(children: [
+                          Container(
+                            color: Colors.black,
+                          ),
+                          Container(
+                            color: Colors.blue,
+                          ),
+                          Container(
+                            color: Colors.amber,
+                          )
+                        ]),
+                      ),
+                    )),
                 ListView.builder(
                   shrinkWrap: true,
                   physics:
