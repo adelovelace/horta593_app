@@ -14,6 +14,24 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
+  void _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        // Return the content of the bottom sheet here
+        return const SizedBox(
+          height: 300,
+          child: Center(
+            child: Text(
+              'This is the bottom sheet content',
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   Widget _buildProductCard(Product product) {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -22,6 +40,7 @@ class _MenuScreenState extends State<MenuScreen> {
             child: GestureDetector(
               onTap: () {
                 // print("Card!");
+                _showBottomSheet(context);
               },
               child: Card(
                 color: GlobalVariables.darkHorta2,
