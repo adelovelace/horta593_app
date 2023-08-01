@@ -32,7 +32,7 @@ class _BaseScreenState extends State<BaseScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         titleSpacing: 0,
-        backgroundColor: GlobalVariables.darkHorta,
+        backgroundColor: GlobalVariables.primarybackground,
         leading: const Icon(
           Icons.place_outlined,
           color: GlobalVariables.secondaryColor,

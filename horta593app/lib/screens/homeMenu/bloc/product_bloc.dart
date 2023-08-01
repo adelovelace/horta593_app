@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:horta593app/model/product_model.dart';
-import 'package:meta/meta.dart';
 
 part 'product_event.dart';
 part 'product_state.dart';

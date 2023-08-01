@@ -6,6 +6,15 @@
       <excludeFolder url="file://$MODULE_DIR$/horta593app/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/horta593app/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/horta593app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/horta593app/macos/Flutter/ephemeral/.symlinks/plugins/flutter_secure_storage_macos/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/horta593app/macos/Flutter/ephemeral/.symlinks/plugins/flutter_secure_storage_macos/build" />
+      <excludeFolder url="file://$MODULE_DIR$/horta593app/macos/Flutter/ephemeral/.symlinks/plugins/flutter_secure_storage_macos/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/horta593app/linux/flutter/ephemeral/.plugin_symlinks/flutter_secure_storage_linux/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/horta593app/linux/flutter/ephemeral/.plugin_symlinks/flutter_secure_storage_linux/build" />
+      <excludeFolder url="file://$MODULE_DIR$/horta593app/linux/flutter/ephemeral/.plugin_symlinks/flutter_secure_storage_linux/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/horta593app/windows/flutter/ephemeral/.plugin_symlinks/flutter_secure_storage_windows/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/horta593app/windows/flutter/ephemeral/.plugin_symlinks/flutter_secure_storage_windows/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/horta593app/windows/flutter/ephemeral/.plugin_symlinks/flutter_secure_storage_windows/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

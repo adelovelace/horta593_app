@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
+// ignore: must_be_immutable
 class Product extends Equatable {
   final String idProduct;
   String name;
@@ -10,15 +11,16 @@ class Product extends Equatable {
   String imageurl;
   String stateProduct;
   double price;
+  String category;
 
-  Product({
-    required this.idProduct,
-    required this.name,
-    required this.description,
-    required this.imageurl,
-    required this.stateProduct,
-    required this.price,
-  }) {}
+  Product(
+      {required this.idProduct,
+      required this.name,
+      required this.description,
+      required this.imageurl,
+      required this.stateProduct,
+      required this.price,
+      required this.category}) {}
 
   @override
   List<Object?> get props =>
@@ -28,27 +30,57 @@ class Product extends Equatable {
     return [
       Product(
           idProduct: '8001',
-          name: "Hamburgesa de Quinoa y Garbanzo",
+          name: "Sandwichs Hamburgesa de Quinoa y Garbanzo",
           description: "Carne de quinoa 3 garbanzos con tomate y pepinos.",
           imageurl:
               "https://2.bp.blogspot.com/-TdgeygGMV08/UwZE_PBicRI/AAAAAAAABtc/hgs8rsgV3Q8/s1600/263.JPG",
           stateProduct: "disponible",
+          category: "Sandwichs",
           price: 4.00),
       Product(
           idProduct: '8002',
-          name: "Hamburgesa de Lenteja",
+          name: "Tortillas Hamburgesa de Lenteja",
           description: "Carne de lenteja, tomate y champinoes.",
           imageurl:
               "https://2.bp.blogspot.com/-TdgeygGMV08/UwZE_PBicRI/AAAAAAAABtc/hgs8rsgV3Q8/s1600/263.JPG",
           stateProduct: "agotado",
+          category: "Tortillas",
           price: 5.00),
       Product(
           idProduct: '8004',
-          name: "Combo Hamburguesas",
+          name: "Tortillas Combo Hamburguesas",
           description: "Carne de quinoa 3 garbanzos con tomate y pepinos.",
           imageurl:
               "https://2.bp.blogspot.com/-TdgeygGMV08/UwZE_PBicRI/AAAAAAAABtc/hgs8rsgV3Q8/s1600/263.JPG",
           stateProduct: "disponible",
+          category: "Tortillas",
+          price: 7.50),
+      Product(
+          idProduct: '8004',
+          name: "Ensaladas Combo Hamburguesas",
+          description: "Carne de quinoa 3 garbanzos con tomate y pepinos.",
+          imageurl:
+              "https://2.bp.blogspot.com/-TdgeygGMV08/UwZE_PBicRI/AAAAAAAABtc/hgs8rsgV3Q8/s1600/263.JPG",
+          stateProduct: "disponible",
+          category: "Ensaladas",
+          price: 7.50),
+      Product(
+          idProduct: '8004',
+          name: "Promos Combo Hamburguesas",
+          description: "Carne de quinoa 3 garbanzos con tomate y pepinos.",
+          imageurl:
+              "https://2.bp.blogspot.com/-TdgeygGMV08/UwZE_PBicRI/AAAAAAAABtc/hgs8rsgV3Q8/s1600/263.JPG",
+          stateProduct: "disponible",
+          category: "Promos",
+          price: 7.50),
+      Product(
+          idProduct: '8004',
+          name: "Bebidas Combo Hamburguesas",
+          description: "Carne de quinoa 3 garbanzos con tomate y pepinos.",
+          imageurl:
+              "https://2.bp.blogspot.com/-TdgeygGMV08/UwZE_PBicRI/AAAAAAAABtc/hgs8rsgV3Q8/s1600/263.JPG",
+          stateProduct: "disponible",
+          category: "Bebidas",
           price: 7.50),
     ];
   }
@@ -61,6 +93,7 @@ class Product extends Equatable {
       imageurl: json['imageurl'],
       stateProduct: json['stateProduct'],
       price: json['price'],
+      category: json['category'],
     );
     return item;
   }
@@ -74,6 +107,7 @@ class Product extends Equatable {
         'imageurl': imageurl,
         'stateProduct': stateProduct,
         'price': price,
+        'category': category
       },
     );
   }

@@ -317,27 +317,3 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 }
-
-// context,
-                                              // MaterialPageRoute(
-                                              //   builder:
-                                              //       (BuildContext context) {
-                                              //     return Builder(
-                                              //       builder:
-                                              //           (BuildContext context) {
-                                              //         return MultiBlocProvider(
-                                              //           providers: [
-                                              //             BlocProvider(
-                                              //               create: (context) =>
-                                              //                   ProductBloc()
-                                              //                     ..add(
-                                              //                         LoadProduct()),
-                                              //             ),
-                                              //           ],
-                                              //           child:
-                                              //               const MenuScreen(),
-                                              //         );
-                                              //       },
-                                              //     );
-                                              //   },
-                                              // ),
