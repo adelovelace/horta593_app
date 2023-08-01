@@ -5,6 +5,9 @@ import 'package:horta593app/screens/category/category_screen.dart';
 
 import '../../constants/global_variables.dart';
 import '../../model/product_model.dart';
+import '../../widgets/counter_custom.dart';
+import '../../widgets/text_normal.dart';
+import '../../widgets/text_title.dart';
 import 'bloc/product_bloc.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -15,17 +18,75 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
-  void _showBottomSheet(BuildContext context) {
+  int c = 0;
+
+  void _showBottomSheet(BuildContext context, Product product) {
     showModalBottomSheet(
       context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
       builder: (BuildContext context) {
-        // Return the content of the bottom sheet here
-        return const SizedBox(
-          height: 300,
-          child: Center(
-            child: Text(
-              'This is the bottom sheet content',
-              style: TextStyle(fontSize: 20),
+        return FractionallySizedBox(
+          heightFactor: 0.8,
+          child: Container(
+            decoration: const BoxDecoration(
+              color: GlobalVariables.primarybackground,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3),
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Image.network(
+                    product.imageurl,
+                    width: AppLayout.getSize(context).width * 0.9,
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                          padding: const EdgeInsets.only(top: 20, left: 10),
+                          child: TitleCustom(title: product.name)),
+                      Padding(
+                          padding: const EdgeInsets.only(top: 5, left: 10),
+                          child: NormalText(
+                            text: "\$${product.price}",
+                          )),
+                      Padding(
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 20, bottom: 10),
+                          child: NormalText(text: product.description)),
+                      Container(
+                        width: AppLayout.getSize(context).width * 0.9,
+                        height:
+                            0.5, // Set the desired height to control the length of the divider
+                        color: GlobalVariables
+                            .greyHorta, // Set the color of the divider line
+                      ),
+                    ],
+                  ),
+                ),
+                CustomCounterWidget(
+                  counterValue: c,
+                  onValueChanged: (newValue) {
+                    setState(() {
+                      c = newValue;
+                    });
+                  },
+                )
+              ],
             ),
           ),
         );
@@ -40,11 +101,10 @@ class _MenuScreenState extends State<MenuScreen> {
             height: 150,
             child: GestureDetector(
               onTap: () {
-                _showBottomSheet(context);
+                _showBottomSheet(context, product);
               },
               child: Card(
                 color: GlobalVariables.darkHorta2,
-                // elevation: 5,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -65,33 +125,16 @@ class _MenuScreenState extends State<MenuScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: Text(
-                              product.name,
-                              style: const TextStyle(
-                                  fontSize: 15,
-                                  color: GlobalVariables.greenHorta,
-                                  fontWeight: FontWeight.bold),
-                              maxLines: 3,
-                              softWrap: true,
-                            ),
-                          ),
+                              padding: const EdgeInsets.only(top: 20),
+                              child: TitleCustom(title: product.name)),
                           Padding(
-                            padding: const EdgeInsets.only(top: 5),
-                            child: Text(
-                              product.price.toString(),
-                              style: const TextStyle(
-                                  color: GlobalVariables.whiteletter),
-                            ),
-                          ),
+                              padding: const EdgeInsets.only(top: 5),
+                              child: NormalText(
+                                text: "\$${product.price}",
+                              )),
                           Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: Text(
-                              product.description,
-                              style: const TextStyle(
-                                  color: GlobalVariables.whiteletter),
-                            ),
-                          )
+                              padding: const EdgeInsets.only(top: 10),
+                              child: NormalText(text: product.description))
                         ],
                       ),
                     ),
@@ -150,8 +193,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     )),
                 ListView.builder(
                   shrinkWrap: true,
-                  physics:
-                      const NeverScrollableScrollPhysics(), // Add this line to disable inner ListView scrolling
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return _buildProductCard(Product.getMenu()[index]);
                   },
