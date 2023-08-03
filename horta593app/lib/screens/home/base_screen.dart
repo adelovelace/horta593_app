@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:horta593app/blocs/cart/cart_bloc.dart';
 import 'package:horta593app/constants/global_variables.dart';
+import 'package:horta593app/screens/shoppingCart/shoppingCart_screen.dart';
 
 import '../homeMenu/bloc/product_bloc.dart';
 import '../homeMenu/homemenu_screen.dart';
@@ -16,7 +18,7 @@ class _BaseScreenState extends State<BaseScreen> {
   int selectIndex = 0;
   static final List<Widget> widgetOptions = <Widget>[
     const MenuScreen(),
-    const Text("Carrito"),
+    const ShoppingCartScreen(),
     const Text("Premios"),
     const Text("Perfil"),
   ];
@@ -62,6 +64,9 @@ class _BaseScreenState extends State<BaseScreen> {
       ),
       body: MultiBlocProvider(
         providers: [
+          BlocProvider<CartBloc>(
+            create: (BuildContext context) => CartBloc(),
+          ),
           BlocProvider(
             create: (context) => ProductBloc()..add(LoadProduct()),
           ),

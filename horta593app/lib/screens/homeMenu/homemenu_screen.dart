@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:horta593app/blocs/cart/cart_bloc.dart';
 import 'package:horta593app/constants/utils/app_layout.dart';
 import 'package:horta593app/screens/category/category_screen.dart';
+import 'package:horta593app/widgets/success_dialog.dart';
 
 import '../../constants/global_variables.dart';
 import '../../model/product_model.dart';
@@ -21,6 +23,7 @@ class _MenuScreenState extends State<MenuScreen> {
   int c = 0;
 
   void _showBottomSheet(BuildContext context, Product product) {
+    final cartBloc = BlocProvider.of<CartBloc>(context);
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -85,6 +88,12 @@ class _MenuScreenState extends State<MenuScreen> {
                       c = newValue;
                     });
                   },
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    cartBloc.add(AddProduct(product));
+                  },
+                  child: const Text('Add cart'),
                 )
               ],
             ),
@@ -158,11 +167,11 @@ class _MenuScreenState extends State<MenuScreen> {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                SingleChildScrollView(
+                const SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.only(left: 20),
+                  padding: EdgeInsets.only(left: 20),
                   child: Row(
-                    children: const [
+                    children: [
                       CategoryScreen(title: 'Sandwichs'),
                       CategoryScreen(title: 'Tortillas'),
                       CategoryScreen(title: 'Ensaldas'),

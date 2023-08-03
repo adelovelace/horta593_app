@@ -6,6 +6,7 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case LoginScreen.routeName:
       return MaterialPageRoute(
           settings: routeSettings, builder: (_) => LoginScreen());
+    case LoginScreen.routeName:
     default:
       return MaterialPageRoute(
           builder: (_) => Scaffold(

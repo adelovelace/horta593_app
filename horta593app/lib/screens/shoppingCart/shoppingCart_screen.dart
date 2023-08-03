@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../blocs/cart/cart_bloc.dart';
 import '../../constants/global_variables.dart';
 import '../../model/product_model.dart';
-import 'bloc/shopping_cart_bloc.dart';
 
 class ShoppingCartScreen extends StatefulWidget {
   const ShoppingCartScreen({Key? key}) : super(key: key);
@@ -62,26 +62,13 @@ class _ShoppingCartScreen extends State<ShoppingCartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ShoppingCartBloc, ShoppingCartState>(
-        builder: (context, state) {
-      if (state is ShoppingCartInitial) {
-        return const CircularProgressIndicator(
-          color: Colors.amberAccent,
+    return BlocBuilder<CartBloc, CartState>(
+      builder: (context, state) {
+        return ListView(
+          children:
+              state.productos.map((e) => _buildShoppingCartCard(e)).toList(),
         );
-      }
-      if (state is ShoppingCartLoad) {
-        return Center(
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return _buildShoppingCartCard(Product.getMenu()[index]);
-            },
-            itemCount: Product.getMenu().length,
-          ),
-        );
-      } else {
-        return const Text("Ups! Something went wrong!");
-      }
-    });
+      },
+    );
   }
 }
